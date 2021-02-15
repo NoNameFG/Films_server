@@ -4,11 +4,21 @@ class SiteController{
   async add_films(req, resp){
     const body = req.body
 
+    let errorData = {
+      status: false,
+      data: {}
+    }
+
     await FilmModel.insertMany(body, (error) => {
-      if(error){
-        return resp.status(409).json(error)
-      }
+       if(error){
+         errorData = {
+           flag: true,
+           data: error
+         }
+       }
     })
+
+    if(errorData.flag) return resp.status(400).json(errorData.data)
 
     resp.status(200).json({message: 'success'})
   }
