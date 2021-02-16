@@ -4,11 +4,13 @@ const express = require('express'),
       cookie_parser = require('cookie-parser'),
       cors = require('cors'),
       app_config = require('./config/config.json'),
-      route_init = require('./init/routeInit.js')
+      route_init = require('./init/routeInit.js'),
+      busboy = require('connect-busboy')
 
 const app = express()
 
 app.use(cors())
+app.use(busboy())
 app.use(body_parser.urlencoded({limit: '16mb', extended: true}))
 app.use(body_parser.json({limit: '16mb'}))
 app.use(cookie_parser())

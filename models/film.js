@@ -8,7 +8,9 @@ const FilmSchema = new Schema({
   },
   release_year: {
     type: Number,
-    required: true
+    required: true,
+    min: 1850,
+    max: 2021
   },
   format: {
     type: String,
